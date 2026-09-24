@@ -292,18 +292,29 @@ h1{font-size:clamp(2.2rem,5vw,4rem); margin:0 0 24px; max-width:12ch; line-heigh
 .portfolio-hero .kicker{color:var(--brass-light);}
 .portfolio-hero .lede{max-width:56ch; color:#E7DFD0; font-size:1.05rem; margin:0;}
 
-.portfoliogrid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--rule);}
-@media(max-width:760px){ .portfoliogrid{grid-template-columns:1fr;} }
-.portfoliocard{background:var(--paper); display:flex; flex-direction:column;}
+.portfoliogrid{display:flex; flex-direction:column; gap:1px; background:var(--rule);}
+.portfoliocard{background:var(--paper); display:grid; grid-template-columns:1fr 1fr;}
 .category-block:nth-child(even) .portfoliocard{background:var(--paper2);}
-.portfoliocard .pf-photo{aspect-ratio:16/10; overflow:hidden;}
+.portfoliocard:nth-child(even) .pf-photo{order:2;}
+.portfoliocard:nth-child(even) .pf-body{order:1;}
+.portfoliocard .pf-photo{overflow:hidden; min-height:320px;}
 .portfoliocard .pf-photo img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s cubic-bezier(.2,.7,.2,1);}
 .portfoliocard:hover .pf-photo img{transform:scale(1.05);}
-.portfoliocard .pf-body{padding:28px 32px 32px; display:flex; flex-direction:column; gap:10px;}
+.portfoliocard .pf-body{padding:44px 48px; display:flex; flex-direction:column; justify-content:center; gap:14px;}
 .portfoliocard .pf-sector{font-size:.78rem; color:var(--brass); letter-spacing:.02em;}
-.portfoliocard h3{font-family:'Fraunces',serif; font-weight:600; font-size:1.2rem; margin:0; color:var(--ink);}
-.portfoliocard p{margin:0; color:var(--ink-soft); font-size:.95rem;}
-.portfoliocard .quotelink{margin-top:6px; font-size:.85rem; color:var(--maroon); text-decoration:none; border-bottom:1px solid var(--maroon); align-self:flex-start;}
+.portfoliocard h3{font-family:'Fraunces',serif; font-weight:600; font-size:1.4rem; margin:0; color:var(--ink);}
+.portfoliocard p{margin:0; color:var(--ink-soft); font-size:.98rem; line-height:1.65;}
+.portfoliocard .pf-scope{margin:6px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px;}
+.portfoliocard .pf-scope li{font-size:.9rem; color:var(--ink-soft); padding-left:18px; position:relative;}
+.portfoliocard .pf-scope li::before{content:"—"; position:absolute; left:0; color:var(--brass);}
+.portfoliocard .quotelink{margin-top:8px; font-size:.85rem; color:var(--maroon); text-decoration:none; border-bottom:1px solid var(--maroon); align-self:flex-start;}
+
+@media(max-width:760px){
+  .portfoliocard{grid-template-columns:1fr;}
+  .portfoliocard:nth-child(even) .pf-photo, .portfoliocard:nth-child(even) .pf-body{order:0;}
+  .portfoliocard .pf-photo{min-height:220px; aspect-ratio:16/10;}
+  .portfoliocard .pf-body{padding:32px 28px;}
+}
 
 @media(max-width:600px){
   .portfolio-hero{min-height:auto; padding:60px 0 40px;}
