@@ -73,4 +73,20 @@
       }, {passive:true});
     }
   }
+  // ---- Category scroll-spy (Products page) ----
+  var catnav = document.querySelector('.catnav');
+  var catBlocks = document.querySelectorAll('.category-block[id]');
+  if(catnav && catBlocks.length && 'IntersectionObserver' in window){
+    var catLinks = catnav.querySelectorAll('a');
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          catLinks.forEach(function(a){ a.classList.remove('active'); });
+          var link = catnav.querySelector('a[href="#' + e.target.id + '"]');
+          if(link) link.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    catBlocks.forEach(function(b){ spy.observe(b); });
+  }
 })();
