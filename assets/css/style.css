@@ -123,10 +123,10 @@ h1{font-size:clamp(2.2rem,5vw,4rem); margin:0 0 24px; max-width:12ch; line-heigh
 
 #partners{background:var(--maroon-wash);}
 .cliwrap{display:flex; flex-wrap:wrap; gap:0;}
-.partnerwrap .partner{border-right:1px solid var(--rule); padding:26px 36px; display:flex; align-items:center; justify-content:center; flex:1; min-width:150px;}
+.partnerwrap .partner{border-right:1px solid var(--rule); padding:32px 40px; display:flex; align-items:center; justify-content:center; flex:1; min-width:150px;}
 .partnerwrap .partner:last-child{border-right:none;}
-.partnerwrap .partner img{max-height:34px; max-width:140px; width:auto; filter:grayscale(1) contrast(1.1) opacity(.75); transition:filter .3s ease;}
-.partnerwrap .partner:hover img{filter:grayscale(0) opacity(1);}
+.partnerwrap .partner img{max-height:52px; max-width:170px; width:auto; transition:transform .3s ease;}
+.partnerwrap .partner:hover img{transform:scale(1.06);}
 
 .clients{background:linear-gradient(180deg, var(--dark), var(--dark2)); color:#EDE6D9;}
 .clients .sectionhead h2{color:#F2ECDF;}
