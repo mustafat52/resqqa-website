@@ -4,7 +4,6 @@
   "private": true,
   "description": "RESQ Trading & Solutions W.L.L. — corporate website (static HTML/CSS/JS)",
   "scripts": {
-    "dev": "npx serve . -l 3000",
-    "build": "echo \"Static site — nothing to build\""
+    "dev": "npx serve . -l 3000"
   }
 }
