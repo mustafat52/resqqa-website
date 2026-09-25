@@ -75,14 +75,34 @@ section{padding:92px 0; position:relative; z-index:2;}
 
 /* ---------- Footer ---------- */
 footer{padding:64px 0 44px; background:var(--dark); color:#C9C1B0; position:relative; z-index:2;}
-.footgrid{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:40px;}
+.footgrid{display:grid; grid-template-columns:1fr 1fr 1.1fr 1.2fr; gap:36px;}
 footer h4{font-size:.85rem; color:var(--brass-light); margin:0 0 14px; font-weight:500;}
 footer p, footer address{margin:0 0 7px; font-style:normal; font-size:.94rem;}
 .foot-bottom{margin-top:44px; padding-top:22px; border-top:1px solid rgba(199,164,92,.2); font-size:.8rem; color:#8A8275; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
-@media(max-width:700px){
-  .footgrid{grid-template-columns:1fr; gap:28px;}
+
+.footer-logo img{height:42px; display:block; margin-bottom:20px; border:1px solid rgba(199,164,92,.2);}
+.footer-social{display:flex; gap:10px;}
+.footer-social a{width:34px; height:34px; border-radius:50%; background:rgba(199,164,92,.1); display:flex; align-items:center; justify-content:center; color:#C9C1B0; transition:background .2s, color .2s; flex-shrink:0;}
+.footer-social a:hover{background:var(--brass-light); color:var(--dark);}
+.footer-social svg{width:15px; height:15px;}
+
+.footer-links{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px;}
+.footer-links a{color:#C9C1B0; text-decoration:none; font-size:.92rem;}
+.footer-links a:hover{color:var(--brass-light);}
+
+.addr-box{background:rgba(242,236,223,.06); border:1px solid rgba(199,164,92,.2); padding:16px 18px; font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace; font-size:.78rem; color:#D8D0C0; line-height:1.75; margin-top:4px;}
+
+.footer-map{border:1px solid rgba(199,164,92,.2); overflow:hidden; aspect-ratio:4/3; background:#0d0a08;}
+.footer-map iframe{width:100%; height:100%; border:0; display:block;}
+
+@media(max-width:900px){
+  .footgrid{grid-template-columns:1fr 1fr; gap:32px;}
+}
+@media(max-width:600px){
+  .footgrid{grid-template-columns:1fr; gap:30px;}
   footer{padding:48px 0 32px;}
   .foot-bottom{flex-direction:column; gap:6px;}
+  .footer-map{aspect-ratio:16/10;}
 }
 
 /* ================= HOMEPAGE ================= */
