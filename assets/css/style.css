@@ -80,11 +80,13 @@ footer h4{font-size:.85rem; color:var(--brass-light); margin:0 0 14px; font-weig
 footer p, footer address{margin:0 0 7px; font-style:normal; font-size:.94rem;}
 .foot-bottom{margin-top:44px; padding-top:22px; border-top:1px solid rgba(199,164,92,.2); font-size:.8rem; color:#8A8275; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
 
-.footer-logo img{height:42px; display:block; margin-bottom:20px; border:1px solid rgba(199,164,92,.2);}
+.footer-logo{margin-bottom:20px;}
+.footer-logo .fname{font-family:'Fraunces',serif; font-size:1.6rem; font-weight:600; color:var(--brass-light); display:block; letter-spacing:-.01em;}
+.footer-logo .ftag{font-size:.68rem; letter-spacing:.14em; color:#9A9184; text-transform:uppercase; margin-top:5px; display:block;}
 .footer-social{display:flex; gap:10px;}
 .footer-social a{width:34px; height:34px; border-radius:50%; background:rgba(199,164,92,.1); display:flex; align-items:center; justify-content:center; color:#C9C1B0; transition:background .2s, color .2s; flex-shrink:0;}
 .footer-social a:hover{background:var(--brass-light); color:var(--dark);}
-.footer-social svg{width:15px; height:15px;}
+.footer-social svg{width:16px; height:16px; display:block;}
 
 .footer-links{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px;}
 .footer-links a{color:#C9C1B0; text-decoration:none; font-size:.92rem;}
@@ -152,7 +154,7 @@ h1{font-size:clamp(2rem,4vw,3.2rem); margin:0 0 16px; max-width:13ch; line-heigh
 .cliwrap{display:flex; flex-wrap:wrap; gap:0;}
 .partnerwrap .partner{border-right:1px solid var(--rule); padding:32px 40px; display:flex; align-items:center; justify-content:center; flex:1; min-width:150px;}
 .partnerwrap .partner:last-child{border-right:none;}
-.partnerwrap .partner img{max-height:100px; max-width:300px; width:auto; transition:transform .3s ease;}
+.partnerwrap .partner img{max-height:52px; max-width:170px; width:auto; transition:transform .3s ease;}
 .partnerwrap .partner:hover img{transform:scale(1.06);}
 
 .clients{background:linear-gradient(180deg, var(--dark), var(--dark2)); color:#EDE6D9;}
@@ -256,6 +258,19 @@ h1{font-size:clamp(2rem,4vw,3.2rem); margin:0 0 16px; max-width:13ch; line-heigh
   .navrow{padding:14px 20px;}
   .wrap{padding:0 20px;}
   a, button{-webkit-tap-highlight-color:rgba(122,18,48,.15);}
+}
+
+/* ---------- Floating WhatsApp button ---------- */
+.wa-float{
+  position:fixed; bottom:22px; right:22px; width:58px; height:58px; border-radius:50%;
+  background:#25D366; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 24px -6px rgba(0,0,0,.4); z-index:150; transition:transform .2s ease;
+}
+.wa-float:hover{transform:scale(1.08);}
+.wa-float svg{width:28px; height:28px; display:block;}
+@media(max-width:600px){
+  .wa-float{width:52px; height:52px; bottom:16px; right:16px;}
+  .wa-float svg{width:25px; height:25px;}
 }
 
 /* ================= PRODUCTS PAGE ================= */
