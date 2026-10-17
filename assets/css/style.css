@@ -654,3 +654,9 @@ html{scroll-padding-top:calc(var(--hdr-h,72px) + 70px);}
 @media(max-width:600px){
   footer{padding-bottom:84px;}
 }
+/* --- 9. Homepage range cards: separate the stacked cards on mobile --- */
+@media(max-width:900px){
+  .rangegrid{gap:24px; background:transparent; border:none;}
+  .rangecard{border:1px solid var(--rule);}
+  .rangecard .rbody{padding-bottom:24px;}
+}
