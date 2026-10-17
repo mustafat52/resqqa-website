@@ -1,6 +1,16 @@
 (function(){
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // ---- Header height -> CSS variable (used by sticky offsets) ----
+  var hdr = document.querySelector('header');
+  function setHdr(){
+    if(hdr) document.documentElement.style.setProperty('--hdr-h', hdr.offsetHeight + 'px');
+  }
+  setHdr();
+  window.addEventListener('resize', setHdr);
+  window.addEventListener('load', setHdr);
+  if(hdr && 'ResizeObserver' in window){ new ResizeObserver(setHdr).observe(hdr); }
+
   // ---- Mobile menu ----
   var menuBtn = document.querySelector('.menu-btn');
   var mobileNav = document.querySelector('.mobile-nav');
@@ -14,6 +24,7 @@
       a.addEventListener('click', function(){
         mobileNav.classList.remove('open');
         menuBtn.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
       });
     });
   }
@@ -32,7 +43,7 @@
     } else {
       var io = new IntersectionObserver(function(entries){
         entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
+      }, {threshold:0, rootMargin:'0px 0px -8% 0px'});
       revealEls.forEach(function(el){ io.observe(el); });
     }
   }
@@ -63,16 +74,18 @@
     }
   }
 
-  // ---- Hero photo parallax (homepage) ----
-  if(!reduced){
+  // ---- Hero photo parallax (homepage, desktop only) ----
+  if(!reduced && window.innerWidth > 900){
     var heroBg = document.querySelector('.hero');
     if(heroBg){
       window.addEventListener('scroll', function(){
-        var y = Math.min(window.scrollY, 500) * 0.12;
-        heroBg.style.backgroundPositionY = (30 + y*0.05) + '%, 0px';
+        var y = Math.min(window.scrollY, 500) * 0.006;
+        // layer 1 = gradient (fixed), layer 2 = photo (35% -> ~38%)
+        heroBg.style.backgroundPositionY = '0, ' + (35 + y) + '%';
       }, {passive:true});
     }
   }
+
   // ---- Category scroll-spy (Products page) ----
   var catnav = document.querySelector('.catnav');
   var catBlocks = document.querySelectorAll('.category-block[id]');
@@ -83,7 +96,12 @@
         if(e.isIntersecting){
           catLinks.forEach(function(a){ a.classList.remove('active'); });
           var link = catnav.querySelector('a[href="#' + e.target.id + '"]');
-          if(link) link.classList.add('active');
+          if(link){
+            link.classList.add('active');
+            // keep the active pill visible in the horizontally scrolling bar
+            var left = link.offsetLeft - (catnav.clientWidth - link.offsetWidth) / 2;
+            catnav.scrollTo({left: left, behavior: reduced ? 'auto' : 'smooth'});
+          }
         }
       });
     }, {rootMargin:'-45% 0px -50% 0px'});

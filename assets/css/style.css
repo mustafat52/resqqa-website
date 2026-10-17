@@ -557,3 +557,100 @@ h1{font-size:clamp(2rem,4vw,3.2rem); margin:0 0 16px; max-width:13ch; line-heigh
   .product-card .dlrow a{flex:1 1 100%; text-align:center;}
   .sc-media:not(.dark){min-height:200px;}
 }
+
+/* =====================================================================
+   MOBILE FIXES — paste at the VERY END of assets/css/style.css
+   (must come last: several bugs were later rules overriding earlier
+   media queries)
+   ===================================================================== */
+
+/* --- 0. Safe-area padding was on :root (pushes whole page). Move it. --- */
+:root{padding-top:0; padding-bottom:0;}
+body{padding-bottom:env(safe-area-inset-bottom,0px); overflow-x:clip;} /* clip, not hidden: keeps sticky working */
+
+/* --- 1. HEADER: "Request a Quote" button was never hidden on mobile,
+        so brand + button + burger were wider than the screen. --- */
+@media(max-width:860px){
+  .navlinks .cta{display:none;}      /* the menu already has .cta-mobile */
+  .navlinks{gap:0;}
+  .mobile-nav:not(.open){border-bottom:none;}
+}
+@media(max-width:600px){
+  .brand .name{font-size:1.3rem;}
+  .brand .tag{font-size:.6rem;}
+}
+
+/* --- 2. Sticky offsets: header height is measured by JS (see main.js
+        snippet) instead of the hard-coded 65px. --- */
+html{scroll-padding-top:calc(var(--hdr-h,72px) + 70px);}
+.catnav{top:calc(var(--hdr-h,72px) - 1px);}
+.category-block, .showcase, .tabs, .tabpanel, .callout{scroll-margin-top:calc(var(--hdr-h,72px) + 70px);}
+
+/* --- 3. HOMEPAGE "range at a glance" cards: a later desktop rule
+        (.rangecard{200px 1fr}) beat the mobile media query, leaving
+        ~135px for the text on phones. --- */
+@media(max-width:600px){
+  .rangecard{grid-template-columns:1fr;}
+  .rangecard .rimg{height:190px; min-height:0;}
+  .rangecard .rimg.light img{height:100%;}
+  .rangecard .rbody{padding:18px 18px 20px;}
+}
+
+/* --- 4. Services: smaller icon column --- */
+@media(max-width:600px){
+  .service{grid-template-columns:36px 1fr; gap:14px;}
+  .service svg{width:36px; height:36px;}
+}
+
+/* --- 5. Partner logos: padding was eating the logo space --- */
+@media(max-width:480px){
+  .partnerwrap .partner{padding:22px 14px; min-width:50%;}
+  .partnerwrap .partner:nth-child(odd){border-right:1px solid var(--rule);}
+}
+
+/* --- 6. About page --- */
+@media(max-width:860px){ .whyphoto{aspect-ratio:4/3;} }
+@media(max-width:700px){
+  .statitem{padding:20px 16px;}
+  .statitem:nth-child(2n){border-right:none;}
+  .statitem:nth-child(-n+2){border-bottom:1px solid var(--rule);}
+  .statitem .num{font-size:1.6rem;}
+}
+
+/* --- 7. PRODUCTS page --- */
+@media(max-width:600px){
+  /* hero badges: tidy 2-col grid instead of ragged wrapping with stray borders */
+  .specbadges{display:grid; grid-template-columns:1fr 1fr; max-width:none;}
+  .specbadges .sb{margin:0; padding:12px 8px 12px 0; border-right:none; border-bottom:1px solid rgba(199,164,92,.2);}
+  .specbadges .sb .v{font-size:1.1rem;}
+
+  /* category pill bar */
+  .catnav .wrap{padding:10px 20px;}
+
+  /* showcase cards */
+  .sc-media:not(.dark){aspect-ratio:16/10; min-height:0;}
+  .sc-media.dark{min-height:200px; padding:16px;}
+  .sc-main{padding:22px 18px 20px;}
+  .tabs{padding:0 16px 22px;}
+  .tab{padding:14px 2px 11px; font-size:.86rem;}
+
+  /* charge boxes: stack */
+  .chargebox{grid-template-columns:1fr;}
+  .chargebox div{border-right:none; border-bottom:1px solid var(--rule);}
+  .chargebox div:last-child{border-bottom:none;}
+
+  /* tables: keep scroll, tighter cells, hint that they scroll */
+  .spectable{font-size:.76rem;}
+  .spectable th, .spectable td{padding:7px 9px;}
+  .spectable.glance{min-width:760px;}
+  .tablewrap{position:relative;}
+  .productcard{padding:20px 18px;}
+  .cat-head{margin-bottom:28px;}
+  .cta-band .btn-primary{width:100%; text-align:center;}
+  .faq summary{font-size:.97rem;}
+}
+
+/* --- 8. Floating WhatsApp button must not cover footer text --- */
+@media(max-width:600px){
+  footer{padding-bottom:84px;}
+}
