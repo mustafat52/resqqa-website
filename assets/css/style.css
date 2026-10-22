@@ -671,3 +671,17 @@ html{scroll-padding-top:calc(var(--hdr-h,72px) + 70px);}
   .sc-media:not(.dark) img{max-height:240px;}
   .rangecard .rimg.light img{max-height:162px;}
 }
+
+/* --- 11. Partner logos: blend white logo boxes into the section background, and make them larger --- */
+.partnerwrap .partner img{
+  mix-blend-mode:multiply;           /* white box becomes transparent against the tinted background */
+  max-height:84px; max-width:240px; width:auto; height:auto;
+}
+.partnerwrap .partner{padding:40px 36px;}
+@media(max-width:900px){
+  .partnerwrap .partner img{max-height:70px; max-width:200px;}
+}
+@media(max-width:480px){
+  .partnerwrap .partner{padding:26px 16px;}
+  .partnerwrap .partner img{max-height:58px; max-width:100%;}
+}
