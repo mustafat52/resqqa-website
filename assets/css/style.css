@@ -685,3 +685,10 @@ html{scroll-padding-top:calc(var(--hdr-h,72px) + 70px);}
   .partnerwrap .partner{padding:26px 16px;}
   .partnerwrap .partner img{max-height:58px; max-width:100%;}
 }
+
+/* --- 12. Logo blend fix: .wrap creates its own stacking context (position+z-index), so the
+        section background was out of reach for mix-blend-mode. Give the logo row the same
+        colour so the multiply blend has the right backdrop to work against. --- */
+.partnerwrap{background:var(--maroon-wash); isolation:auto;}
+.partnerwrap .partner{background:transparent;}
+.partnerwrap .partner img{mix-blend-mode:multiply;}
