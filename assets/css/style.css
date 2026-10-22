@@ -660,3 +660,14 @@ html{scroll-padding-top:calc(var(--hdr-h,72px) + 70px);}
   .rangecard{border:1px solid var(--rule);}
   .rangecard .rbody{padding-bottom:24px;}
 }
+
+/* --- 10. New product photos: single battery on transparent PNG -> show whole, not cropped --- */
+.rangecard .rimg.light{padding:14px;}
+.rangecard .rimg.light img{object-fit:contain; width:100%; height:100%; max-height:210px;}
+.sc-media:not(.dark){padding:24px;}
+.sc-media:not(.dark) img{width:auto; height:auto; max-width:100%; max-height:330px; object-fit:contain;}
+@media(max-width:600px){
+  .sc-media:not(.dark){aspect-ratio:auto; min-height:220px; padding:20px;}
+  .sc-media:not(.dark) img{max-height:240px;}
+  .rangecard .rimg.light img{max-height:162px;}
+}
